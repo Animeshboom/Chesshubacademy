@@ -40,6 +40,7 @@ interface PerformanceProfile {
 }
 
 interface Profile {
+  id?: string;
   student_id?: string;
   assigned_coach_id?: string;
   assigned_coach_name?: string;
