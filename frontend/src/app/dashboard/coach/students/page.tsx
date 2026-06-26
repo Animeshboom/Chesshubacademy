@@ -785,10 +785,10 @@ export default function CoachStudentsPage() {
                       {/* Generated Stats Grid */}
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
                         {[
-                          { label: 'Attendance Rate', val: `${previewReport.attendance_rate}%` },
-                          { label: 'Homework Complete', val: `${previewReport.homework_rate}%` },
-                          { label: 'ELO Growth', val: `${previewReport.rating_growth > 0 ? '+' : ''}${previewReport.rating_growth}` },
-                          { label: 'Puzzle Accuracy', val: `${previewReport.puzzle_accuracy}%` }
+                          { label: 'Attendance Rate', val: `${previewReport.attendance_rate ?? 0}%` },
+                          { label: 'Homework Complete', val: `${previewReport.homework_rate ?? 0}%` },
+                          { label: 'ELO Growth', val: `${(previewReport.rating_growth ?? 0) > 0 ? '+' : ''}${previewReport.rating_growth ?? 0}` },
+                          { label: 'Puzzle Accuracy', val: `${previewReport.puzzle_accuracy ?? 0}%` }
                         ].map((stat, idx) => (
                           <div key={idx} className="bg-background/60 p-3 rounded-xl border border-border/50">
                             <p className="text-base font-black text-white">{stat.val}</p>
