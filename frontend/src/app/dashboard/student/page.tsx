@@ -59,7 +59,7 @@ interface MonthlyReport {
 }
 
 export default function StudentDashboard() {
-  const { user, profile, loadMe } = useAuth();
+  const { user, profile, refreshProfile } = useAuth();
   const [stats, setStats] = useState<any>(null);
   const [sessions, setSessions] = useState<Session[]>([]);
   const [homework, setHomework] = useState<Assignment[]>([]);
@@ -141,7 +141,7 @@ export default function StudentDashboard() {
     setSyncing(true);
     try {
       await api.post(`/academy/students/${profile.id}/sync_lichess/`);
-      await loadMe();
+      await refreshProfile();
       await loadData();
       setMsg('✅ Lichess ratings synchronized successfully!');
     } catch {
