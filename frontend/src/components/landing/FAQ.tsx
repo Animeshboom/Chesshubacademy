@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'react-redux'; // Wait! Next.js and Tailwind - do not import react-redux, use standard useState! Let's write standard React.
 import { HelpCircle, ChevronDown, Search } from 'lucide-react';
 
 interface FAQItem {
