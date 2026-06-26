@@ -1,0 +1,176 @@
+@import "tailwindcss";
+
+:root {
+  --background: #030712;      /* Midnight Black */
+  --foreground: #f8fafc;      /* White/Silver typography */
+  --card: #0b1329;            /* Deep Royal Navy/Black */
+  --border: #1e293b;          /* Dark slate border */
+  
+  --primary: #1d4ed8;         /* Deep Royal Blue */
+  --secondary: #3b82f6;       /* Royal Blue Light */
+  --accent: #d4af37;          /* Metallic Gold */
+  --muted: #94a3b8;           /* Muted Silver */
+  
+  --glass-bg: rgba(11, 19, 41, 0.75);
+  --glass-border: rgba(212, 175, 55, 0.15); /* Gold glass borders */
+  --glass-shadow: rgba(0, 0, 0, 0.5);
+}
+
+.dark {
+  --background: #030712;
+  --foreground: #f8fafc;
+  --card: #0b1329;
+  --border: #1e293b;
+  
+  --primary: #1d4ed8;
+  --secondary: #3b82f6;
+  --accent: #d4af37;
+  --muted: #94a3b8;
+  
+  --glass-bg: rgba(11, 19, 41, 0.75);
+  --glass-border: rgba(212, 175, 55, 0.15);
+  --glass-shadow: rgba(0, 0, 0, 0.5);
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-border: var(--border);
+  
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  min-height: 100vh;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Glassmorphism helpers */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px 0 var(--glass-shadow);
+}
+
+.glass-hover {
+  transition: all 0.2s ease-in-out;
+}
+
+.glass-hover:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Fix for chessground rendering */
+.cg-wrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Zoom SDK UI containment overrides */
+#zmmtg-root {
+  position: relative !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 350px !important;
+  background-color: #030712 !important;
+  display: block !important;
+  z-index: 1 !important;
+}
+
+#zmmtg-root iframe {
+  position: relative !important;
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+}
+
+/* Hide Zoom SDK global overlays when not needed */
+body > #zmmtg-root {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Premium luxury animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+@keyframes rotateStars {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+    opacity: 0.8;
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.8);
+    opacity: 1;
+  }
+}
+
+@keyframes shineSweep {
+  0% {
+    left: -100%;
+  }
+  50%, 100% {
+    left: 100%;
+  }
+}
+
+.animate-float-board {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-rotate-stars {
+  animation: rotateStars 120s linear infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+.premium-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.premium-shine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+  transform: skewX(-25deg);
+  animation: shineSweep 4s infinite;
+}
+
