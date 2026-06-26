@@ -1,0 +1,23 @@
+USER FOUND: royduguu786@gmail.com | Role: coach | Active: True | Password reset to: ChessHub2026!
+DemoBookings matching notes: 0
+USER NOT FOUND: tisha@gmail.com
+DemoBookings matching notes: 0
+
+RECENT LEADS:
+- ID: 56bb94e4-2f4c-4c8e-921f-edcbd07c1562 | Student: Test Student Verification | Parent: Test Parent Verification | WhatsApp: +91 99999 88888 | Status: new | Notes: 
+- ID: 46e98023-bfbb-4461-b6aa-51f6f26b787b | Student: tisha | Parent: kuni | WhatsApp: +918917383585 | Status: contacted | Notes: 
+- ID: 8320d68e-cd7a-4430-9868-4a5f4dcf1ea4 | Student: tisha | Parent: kuni | WhatsApp: 8917383585 | Status: new | Notes: 
+- ID: 4d9772ab-617c-4994-bb15-7b119ac7b32e | Student: dugu | Parent: animesh | WhatsApp: +917008665245 | Status: new | Notes: 
+- ID: 1fbaaa65-3084-4d6a-aeec-58cf5b33352e | Student: dugu | Parent: animesh | WhatsApp: +917008665245 | Status: new | Notes: 
+
+RECENT USERS:
+- divya@chesshubacademy.online | Role: coach | Active: True
+- coach_test_verify@chesshubacademy.online | Role: coach | Active: True
+- student@chesshubacademy.online | Role: student | Active: True
+- manager@chesshubacademy.online | Role: manager | Active: True
+- tisha12@gmail.com | Role: student | Active: True
+- testparent@gmail.com | Role: parent | Active: True
+- royduguu786@gmail.com | Role: coach | Active: True
+- coach@chesshubacademy.online | Role: coach | Active: True
+- emily@chesshubacademy.online | Role: student | Active: True
+- lucas@chesshubacademy.online | Role: student | Active: True
