@@ -33,11 +33,22 @@ export default function DemoBookingForm() {
     setError('');
 
     try {
-      // Post booking to backend API
-      await api.post('/academy/demo-bookings/', {
-        ...formData,
-        age: parseInt(formData.age, 10),
+      // Post booking directly to Next.js API Route (which connects to Neon DB)
+      const response = await fetch('/api/v1/academy/demo-bookings/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          age: parseInt(formData.age, 10),
+        }),
       });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Something went wrong. Please check your inputs and try again.');
+      }
 
       setSuccess(true);
       setLoading(false);
@@ -45,7 +56,7 @@ export default function DemoBookingForm() {
       setLoading(false);
       console.error(err);
       setError(
-        err.response?.data?.error ||
+        err.message ||
         'Something went wrong. Please check your inputs and try again.'
       );
     }

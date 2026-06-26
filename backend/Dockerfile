@@ -25,5 +25,5 @@ COPY . /app/
 # Expose port
 EXPOSE 8000
 
-# Start application server
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "config.wsgi:application"]
+# Start application server dynamically on the assigned PORT
+CMD ["sh", "-c", "daphne -b 0.0.0.0 -p $PORT config.asgi:application"]

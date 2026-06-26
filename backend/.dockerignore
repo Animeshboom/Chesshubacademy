@@ -1,0 +1,15 @@
+.git
+.gitignore
+venv/
+.env
+db.sqlite3
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.db
+media/
+staticfiles/
+user_check.txt
+reset_pw.py
+verification_results.txt
