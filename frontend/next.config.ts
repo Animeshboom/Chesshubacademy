@@ -3,6 +3,7 @@ import type { NextConfig } from "next";
 import withPWAInit from "next-pwa";
 
 const config: NextConfig = {
+  turbopack: {},
   async rewrites() {
     return [
       {
