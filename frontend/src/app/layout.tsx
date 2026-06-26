@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { AuthProvider } from "@/context/AuthContext";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import TelemetryInitializer from "@/components/TelemetryInitializer";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import "chessground/assets/chessground.base.css";
 import "chessground/assets/chessground.brown.css";
@@ -94,6 +95,7 @@ export default function RootLayout({
             {children}
           </ErrorBoundary>
         </AuthProvider>
+        <Analytics />
       </body>
     </html>
   );
