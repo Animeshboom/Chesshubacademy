@@ -70,6 +70,7 @@ interface Profile {
   roadmap?: Record<string, { status: 'not_started' | 'in_progress' | 'completed'; topics: string[] }>;
   performance_profile?: PerformanceProfile;
   package_tracking?: any[];
+  students?: any[];
 }
 
 interface AuthContextType {
