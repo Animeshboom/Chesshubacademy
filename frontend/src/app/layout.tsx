@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import { AuthProvider } from "@/context/AuthContext";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import TelemetryInitializer from "@/components/TelemetryInitializer";
@@ -89,6 +90,11 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <Script
+          src="https://js.sentry-cdn.com/5778efc818d495fb2121369eab53ec11.min.js"
+          crossorigin="anonymous"
+          strategy="beforeInteractive"
+        />
         <AuthProvider>
           <TelemetryInitializer />
           <ErrorBoundary>
