@@ -1,57 +1,1234 @@
 === CHESSHUB ACADEMY SYSTEM VERIFICATION LOG ===
+Clean up error: ("Cannot delete some instances of model 'User' because they are referenced through restricted foreign keys: 'Session.coach'.", {<Session: Test Verification Session (2026-06-29 17:33)>, <Session: Test Verification Session (2026-06-29 18:31)>})
 
 --- Verification 1: Demo Booking Form ---
-Submit booking status code: 201
-Database record created successfully: 4450dbde-371e-4200-82fa-0b804118ac34
-DemoBooking registered in admin: True
+Error in Demo Booking Form verification: No module named 'redis'
 
 --- Verification 2: Coach Creation ---
-Manager login status: 401
-FAIL: Manager authentication failed
+Error in Coach Creation verification: No module named 'redis'
+Traceback (most recent call last):
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 686, in resolve
+    for pattern in self.url_patterns:
+                   ^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 738, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 731, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\anime\AppData\Local\Python\pythoncore-3.14-64\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1406, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1342, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 938, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "D:\chesshubacademyonline\backend\config\urls.py", line 5, in <module>
+    from config.views import health_check
+  File "D:\chesshubacademyonline\backend\config\views.py", line 2, in <module>
+    import redis
+ModuleNotFoundError: No module named 'redis'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\deprecation.py", line 134, in __call__
+    response = response or self.get_response(request)
+                           ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 57, in inner
+    response = response_for_exception(request, exc)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 140, in response_for_exception
+    response = handle_uncaught_exception(
+        request, get_resolver(get_urlconf()), sys.exc_info()
+    )
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 181, in handle_uncaught_exception
+    return debug.technical_500_response(request, *exc_info)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 69, in technical_500_response
+    html = reporter.get_traceback_html()
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 428, in get_traceback_html
+    c = Context(self.get_traceback_data(), use_l10n=False)
+                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 411, in get_traceback_data
+    c["raising_view_name"] = get_caller(self.request)
+                             ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 102, in get_caller
+    resolver_match = resolve(request.path)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\base.py", line 24, in resolve
+    return get_resolver(urlconf).resolve(path)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 686, in resolve
+    for pattern in self.url_patterns:
+                   ^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 738, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 731, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\anime\AppData\Local\Python\pythoncore-3.14-64\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1406, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1342, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 938, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "D:\chesshubacademyonline\backend\config\urls.py", line 5, in <module>
+    from config.views import health_check
+  File "D:\chesshubacademyonline\backend\config\views.py", line 2, in <module>
+    import redis
+ModuleNotFoundError: No module named 'redis'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\deprecation.py", line 134, in __call__
+    response = response or self.get_response(request)
+                           ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 57, in inner
+    response = response_for_exception(request, exc)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 140, in response_for_exception
+    response = handle_uncaught_exception(
+        request, get_resolver(get_urlconf()), sys.exc_info()
+    )
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 181, in handle_uncaught_exception
+    return debug.technical_500_response(request, *exc_info)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 69, in technical_500_response
+    html = reporter.get_traceback_html()
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 428, in get_traceback_html
+    c = Context(self.get_traceback_data(), use_l10n=False)
+                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 411, in get_traceback_data
+    c["raising_view_name"] = get_caller(self.request)
+                             ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 102, in get_caller
+    resolver_match = resolve(request.path)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\base.py", line 24, in resolve
+    return get_resolver(urlconf).resolve(path)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 686, in resolve
+    for pattern in self.url_patterns:
+                   ^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 738, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 731, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\anime\AppData\Local\Python\pythoncore-3.14-64\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1406, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1342, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 938, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "D:\chesshubacademyonline\backend\config\urls.py", line 5, in <module>
+    from config.views import health_check
+  File "D:\chesshubacademyonline\backend\config\views.py", line 2, in <module>
+    import redis
+ModuleNotFoundError: No module named 'redis'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\deprecation.py", line 134, in __call__
+    response = response or self.get_response(request)
+                           ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 57, in inner
+    response = response_for_exception(request, exc)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 140, in response_for_exception
+    response = handle_uncaught_exception(
+        request, get_resolver(get_urlconf()), sys.exc_info()
+    )
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 181, in handle_uncaught_exception
+    return debug.technical_500_response(request, *exc_info)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 69, in technical_500_response
+    html = reporter.get_traceback_html()
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 428, in get_traceback_html
+    c = Context(self.get_traceback_data(), use_l10n=False)
+                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 411, in get_traceback_data
+    c["raising_view_name"] = get_caller(self.request)
+                             ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 102, in get_caller
+    resolver_match = resolve(request.path)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\base.py", line 24, in resolve
+    return get_resolver(urlconf).resolve(path)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 686, in resolve
+    for pattern in self.url_patterns:
+                   ^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 738, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 731, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\anime\AppData\Local\Python\pythoncore-3.14-64\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1406, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1342, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 938, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "D:\chesshubacademyonline\backend\config\urls.py", line 5, in <module>
+    from config.views import health_check
+  File "D:\chesshubacademyonline\backend\config\views.py", line 2, in <module>
+    import redis
+ModuleNotFoundError: No module named 'redis'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\deprecation.py", line 134, in __call__
+    response = response or self.get_response(request)
+                           ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 57, in inner
+    response = response_for_exception(request, exc)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 140, in response_for_exception
+    response = handle_uncaught_exception(
+        request, get_resolver(get_urlconf()), sys.exc_info()
+    )
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 181, in handle_uncaught_exception
+    return debug.technical_500_response(request, *exc_info)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 69, in technical_500_response
+    html = reporter.get_traceback_html()
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 428, in get_traceback_html
+    c = Context(self.get_traceback_data(), use_l10n=False)
+                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 411, in get_traceback_data
+    c["raising_view_name"] = get_caller(self.request)
+                             ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 102, in get_caller
+    resolver_match = resolve(request.path)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\base.py", line 24, in resolve
+    return get_resolver(urlconf).resolve(path)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 686, in resolve
+    for pattern in self.url_patterns:
+                   ^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 738, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 731, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\anime\AppData\Local\Python\pythoncore-3.14-64\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1406, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1342, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 938, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "D:\chesshubacademyonline\backend\config\urls.py", line 5, in <module>
+    from config.views import health_check
+  File "D:\chesshubacademyonline\backend\config\views.py", line 2, in <module>
+    import redis
+ModuleNotFoundError: No module named 'redis'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\deprecation.py", line 134, in __call__
+    response = response or self.get_response(request)
+                           ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 57, in inner
+    response = response_for_exception(request, exc)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 140, in response_for_exception
+    response = handle_uncaught_exception(
+        request, get_resolver(get_urlconf()), sys.exc_info()
+    )
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 181, in handle_uncaught_exception
+    return debug.technical_500_response(request, *exc_info)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 69, in technical_500_response
+    html = reporter.get_traceback_html()
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 428, in get_traceback_html
+    c = Context(self.get_traceback_data(), use_l10n=False)
+                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 411, in get_traceback_data
+    c["raising_view_name"] = get_caller(self.request)
+                             ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 102, in get_caller
+    resolver_match = resolve(request.path)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\base.py", line 24, in resolve
+    return get_resolver(urlconf).resolve(path)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 686, in resolve
+    for pattern in self.url_patterns:
+                   ^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 738, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 731, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\anime\AppData\Local\Python\pythoncore-3.14-64\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1406, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1342, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 938, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "D:\chesshubacademyonline\backend\config\urls.py", line 5, in <module>
+    from config.views import health_check
+  File "D:\chesshubacademyonline\backend\config\views.py", line 2, in <module>
+    import redis
+ModuleNotFoundError: No module named 'redis'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\corsheaders\middleware.py", line 53, in __call__
+    result = self.get_response(request)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 57, in inner
+    response = response_for_exception(request, exc)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 140, in response_for_exception
+    response = handle_uncaught_exception(
+        request, get_resolver(get_urlconf()), sys.exc_info()
+    )
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 181, in handle_uncaught_exception
+    return debug.technical_500_response(request, *exc_info)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 69, in technical_500_response
+    html = reporter.get_traceback_html()
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 428, in get_traceback_html
+    c = Context(self.get_traceback_data(), use_l10n=False)
+                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 411, in get_traceback_data
+    c["raising_view_name"] = get_caller(self.request)
+                             ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 102, in get_caller
+    resolver_match = resolve(request.path)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\base.py", line 24, in resolve
+    return get_resolver(urlconf).resolve(path)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 686, in resolve
+    for pattern in self.url_patterns:
+                   ^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 738, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 731, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\anime\AppData\Local\Python\pythoncore-3.14-64\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1406, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1342, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 938, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "D:\chesshubacademyonline\backend\config\urls.py", line 5, in <module>
+    from config.views import health_check
+  File "D:\chesshubacademyonline\backend\config\views.py", line 2, in <module>
+    import redis
+ModuleNotFoundError: No module named 'redis'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\deprecation.py", line 134, in __call__
+    response = response or self.get_response(request)
+                           ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 57, in inner
+    response = response_for_exception(request, exc)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 140, in response_for_exception
+    response = handle_uncaught_exception(
+        request, get_resolver(get_urlconf()), sys.exc_info()
+    )
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 181, in handle_uncaught_exception
+    return debug.technical_500_response(request, *exc_info)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 69, in technical_500_response
+    html = reporter.get_traceback_html()
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 428, in get_traceback_html
+    c = Context(self.get_traceback_data(), use_l10n=False)
+                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 411, in get_traceback_data
+    c["raising_view_name"] = get_caller(self.request)
+                             ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 102, in get_caller
+    resolver_match = resolve(request.path)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\base.py", line 24, in resolve
+    return get_resolver(urlconf).resolve(path)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 686, in resolve
+    for pattern in self.url_patterns:
+                   ^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 738, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 731, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\anime\AppData\Local\Python\pythoncore-3.14-64\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1406, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1342, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 938, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "D:\chesshubacademyonline\backend\config\urls.py", line 5, in <module>
+    from config.views import health_check
+  File "D:\chesshubacademyonline\backend\config\views.py", line 2, in <module>
+    import redis
+ModuleNotFoundError: No module named 'redis'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\deprecation.py", line 134, in __call__
+    response = response or self.get_response(request)
+                           ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 57, in inner
+    response = response_for_exception(request, exc)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 140, in response_for_exception
+    response = handle_uncaught_exception(
+        request, get_resolver(get_urlconf()), sys.exc_info()
+    )
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 181, in handle_uncaught_exception
+    return debug.technical_500_response(request, *exc_info)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 69, in technical_500_response
+    html = reporter.get_traceback_html()
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 428, in get_traceback_html
+    c = Context(self.get_traceback_data(), use_l10n=False)
+                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 411, in get_traceback_data
+    c["raising_view_name"] = get_caller(self.request)
+                             ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 102, in get_caller
+    resolver_match = resolve(request.path)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\base.py", line 24, in resolve
+    return get_resolver(urlconf).resolve(path)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 686, in resolve
+    for pattern in self.url_patterns:
+                   ^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 738, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 731, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\anime\AppData\Local\Python\pythoncore-3.14-64\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1406, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1342, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 938, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "D:\chesshubacademyonline\backend\config\urls.py", line 5, in <module>
+    from config.views import health_check
+  File "D:\chesshubacademyonline\backend\config\views.py", line 2, in <module>
+    import redis
+ModuleNotFoundError: No module named 'redis'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\chesshubacademyonline\backend\apps\academy\verify_system.py", line 91, in run_verification
+    login_res = login_client(manager_email)
+  File "D:\chesshubacademyonline\backend\apps\academy\verify_system.py", line 25, in login_client
+    res = client.post('/api/v1/auth/login/', {'email': email, 'password': password}, content_type='application/json')
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\test\client.py", line 1070, in post
+    response = super().post(
+        path,
+    ...<4 lines>...
+        **extra,
+    )
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\test\client.py", line 490, in post
+    return self.generic(
+           ~~~~~~~~~~~~^
+        "POST",
+        ^^^^^^^
+    ...<5 lines>...
+        **extra,
+        ^^^^^^^^
+    )
+    ^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\test\client.py", line 617, in generic
+    return self.request(**r)
+           ~~~~~~~~~~~~^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\test\client.py", line 1008, in request
+    response = self.handler(environ)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\test\client.py", line 186, in __call__
+    response = self.get_response(request)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\base.py", line 140, in get_response
+    response = self._middleware_chain(request)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 57, in inner
+    response = response_for_exception(request, exc)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 140, in response_for_exception
+    response = handle_uncaught_exception(
+        request, get_resolver(get_urlconf()), sys.exc_info()
+    )
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 181, in handle_uncaught_exception
+    return debug.technical_500_response(request, *exc_info)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 69, in technical_500_response
+    html = reporter.get_traceback_html()
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 428, in get_traceback_html
+    c = Context(self.get_traceback_data(), use_l10n=False)
+                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 411, in get_traceback_data
+    c["raising_view_name"] = get_caller(self.request)
+                             ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 102, in get_caller
+    resolver_match = resolve(request.path)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\base.py", line 24, in resolve
+    return get_resolver(urlconf).resolve(path)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 686, in resolve
+    for pattern in self.url_patterns:
+                   ^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 738, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 731, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\anime\AppData\Local\Python\pythoncore-3.14-64\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1406, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1342, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 938, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "D:\chesshubacademyonline\backend\config\urls.py", line 5, in <module>
+    from config.views import health_check
+  File "D:\chesshubacademyonline\backend\config\views.py", line 2, in <module>
+    import redis
+ModuleNotFoundError: No module named 'redis'
+
 
 --- Verification 3: Student Creation ---
+Error in Student Creation verification: No module named 'redis'
 
 --- Verification 4: Session Scheduling ---
+Error in Session Scheduling verification: No module named 'redis'
 
 --- Verification 5: Session Completion ---
 Debug Complete: Session found: Tactical Calculations - Pins & Forks (2026-06-27 20:30)
 Debug Complete: Student found: Student: Aarav Sharma
 Debug Complete: Coach User found: coach@chesshubacademy.online (Coach)
-FAIL: Coach authentication failed
+Error in Session Completion verification: No module named 'redis'
 
 --- Verification 6: Homework ---
-Create homework template: 201
-Assign homework response: 201
-Student submit response: 201
-Coach review response: 200
-PASS: Homework lifecycle fully validated!
+Error in Homework verification: No module named 'redis'
+Traceback (most recent call last):
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 686, in resolve
+    for pattern in self.url_patterns:
+                   ^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 738, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 731, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\anime\AppData\Local\Python\pythoncore-3.14-64\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1406, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1342, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 938, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "D:\chesshubacademyonline\backend\config\urls.py", line 5, in <module>
+    from config.views import health_check
+  File "D:\chesshubacademyonline\backend\config\views.py", line 2, in <module>
+    import redis
+ModuleNotFoundError: No module named 'redis'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\deprecation.py", line 134, in __call__
+    response = response or self.get_response(request)
+                           ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 57, in inner
+    response = response_for_exception(request, exc)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 140, in response_for_exception
+    response = handle_uncaught_exception(
+        request, get_resolver(get_urlconf()), sys.exc_info()
+    )
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 181, in handle_uncaught_exception
+    return debug.technical_500_response(request, *exc_info)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 69, in technical_500_response
+    html = reporter.get_traceback_html()
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 428, in get_traceback_html
+    c = Context(self.get_traceback_data(), use_l10n=False)
+                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 411, in get_traceback_data
+    c["raising_view_name"] = get_caller(self.request)
+                             ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 102, in get_caller
+    resolver_match = resolve(request.path)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\base.py", line 24, in resolve
+    return get_resolver(urlconf).resolve(path)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 686, in resolve
+    for pattern in self.url_patterns:
+                   ^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 738, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 731, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\anime\AppData\Local\Python\pythoncore-3.14-64\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1406, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1342, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 938, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "D:\chesshubacademyonline\backend\config\urls.py", line 5, in <module>
+    from config.views import health_check
+  File "D:\chesshubacademyonline\backend\config\views.py", line 2, in <module>
+    import redis
+ModuleNotFoundError: No module named 'redis'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\deprecation.py", line 134, in __call__
+    response = response or self.get_response(request)
+                           ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 57, in inner
+    response = response_for_exception(request, exc)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 140, in response_for_exception
+    response = handle_uncaught_exception(
+        request, get_resolver(get_urlconf()), sys.exc_info()
+    )
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 181, in handle_uncaught_exception
+    return debug.technical_500_response(request, *exc_info)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 69, in technical_500_response
+    html = reporter.get_traceback_html()
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 428, in get_traceback_html
+    c = Context(self.get_traceback_data(), use_l10n=False)
+                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 411, in get_traceback_data
+    c["raising_view_name"] = get_caller(self.request)
+                             ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 102, in get_caller
+    resolver_match = resolve(request.path)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\base.py", line 24, in resolve
+    return get_resolver(urlconf).resolve(path)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 686, in resolve
+    for pattern in self.url_patterns:
+                   ^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 738, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 731, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\anime\AppData\Local\Python\pythoncore-3.14-64\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1406, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1342, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 938, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "D:\chesshubacademyonline\backend\config\urls.py", line 5, in <module>
+    from config.views import health_check
+  File "D:\chesshubacademyonline\backend\config\views.py", line 2, in <module>
+    import redis
+ModuleNotFoundError: No module named 'redis'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\deprecation.py", line 134, in __call__
+    response = response or self.get_response(request)
+                           ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 57, in inner
+    response = response_for_exception(request, exc)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 140, in response_for_exception
+    response = handle_uncaught_exception(
+        request, get_resolver(get_urlconf()), sys.exc_info()
+    )
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 181, in handle_uncaught_exception
+    return debug.technical_500_response(request, *exc_info)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 69, in technical_500_response
+    html = reporter.get_traceback_html()
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 428, in get_traceback_html
+    c = Context(self.get_traceback_data(), use_l10n=False)
+                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 411, in get_traceback_data
+    c["raising_view_name"] = get_caller(self.request)
+                             ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 102, in get_caller
+    resolver_match = resolve(request.path)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\base.py", line 24, in resolve
+    return get_resolver(urlconf).resolve(path)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 686, in resolve
+    for pattern in self.url_patterns:
+                   ^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 738, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 731, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\anime\AppData\Local\Python\pythoncore-3.14-64\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1406, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1342, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 938, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "D:\chesshubacademyonline\backend\config\urls.py", line 5, in <module>
+    from config.views import health_check
+  File "D:\chesshubacademyonline\backend\config\views.py", line 2, in <module>
+    import redis
+ModuleNotFoundError: No module named 'redis'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\deprecation.py", line 134, in __call__
+    response = response or self.get_response(request)
+                           ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 57, in inner
+    response = response_for_exception(request, exc)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 140, in response_for_exception
+    response = handle_uncaught_exception(
+        request, get_resolver(get_urlconf()), sys.exc_info()
+    )
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 181, in handle_uncaught_exception
+    return debug.technical_500_response(request, *exc_info)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 69, in technical_500_response
+    html = reporter.get_traceback_html()
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 428, in get_traceback_html
+    c = Context(self.get_traceback_data(), use_l10n=False)
+                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 411, in get_traceback_data
+    c["raising_view_name"] = get_caller(self.request)
+                             ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 102, in get_caller
+    resolver_match = resolve(request.path)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\base.py", line 24, in resolve
+    return get_resolver(urlconf).resolve(path)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 686, in resolve
+    for pattern in self.url_patterns:
+                   ^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 738, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 731, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\anime\AppData\Local\Python\pythoncore-3.14-64\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1406, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1342, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 938, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "D:\chesshubacademyonline\backend\config\urls.py", line 5, in <module>
+    from config.views import health_check
+  File "D:\chesshubacademyonline\backend\config\views.py", line 2, in <module>
+    import redis
+ModuleNotFoundError: No module named 'redis'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\deprecation.py", line 134, in __call__
+    response = response or self.get_response(request)
+                           ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 57, in inner
+    response = response_for_exception(request, exc)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 140, in response_for_exception
+    response = handle_uncaught_exception(
+        request, get_resolver(get_urlconf()), sys.exc_info()
+    )
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 181, in handle_uncaught_exception
+    return debug.technical_500_response(request, *exc_info)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 69, in technical_500_response
+    html = reporter.get_traceback_html()
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 428, in get_traceback_html
+    c = Context(self.get_traceback_data(), use_l10n=False)
+                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 411, in get_traceback_data
+    c["raising_view_name"] = get_caller(self.request)
+                             ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 102, in get_caller
+    resolver_match = resolve(request.path)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\base.py", line 24, in resolve
+    return get_resolver(urlconf).resolve(path)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 686, in resolve
+    for pattern in self.url_patterns:
+                   ^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 738, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 731, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\anime\AppData\Local\Python\pythoncore-3.14-64\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1406, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1342, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 938, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "D:\chesshubacademyonline\backend\config\urls.py", line 5, in <module>
+    from config.views import health_check
+  File "D:\chesshubacademyonline\backend\config\views.py", line 2, in <module>
+    import redis
+ModuleNotFoundError: No module named 'redis'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\corsheaders\middleware.py", line 53, in __call__
+    result = self.get_response(request)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 57, in inner
+    response = response_for_exception(request, exc)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 140, in response_for_exception
+    response = handle_uncaught_exception(
+        request, get_resolver(get_urlconf()), sys.exc_info()
+    )
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 181, in handle_uncaught_exception
+    return debug.technical_500_response(request, *exc_info)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 69, in technical_500_response
+    html = reporter.get_traceback_html()
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 428, in get_traceback_html
+    c = Context(self.get_traceback_data(), use_l10n=False)
+                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 411, in get_traceback_data
+    c["raising_view_name"] = get_caller(self.request)
+                             ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 102, in get_caller
+    resolver_match = resolve(request.path)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\base.py", line 24, in resolve
+    return get_resolver(urlconf).resolve(path)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 686, in resolve
+    for pattern in self.url_patterns:
+                   ^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 738, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 731, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\anime\AppData\Local\Python\pythoncore-3.14-64\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1406, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1342, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 938, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "D:\chesshubacademyonline\backend\config\urls.py", line 5, in <module>
+    from config.views import health_check
+  File "D:\chesshubacademyonline\backend\config\views.py", line 2, in <module>
+    import redis
+ModuleNotFoundError: No module named 'redis'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\deprecation.py", line 134, in __call__
+    response = response or self.get_response(request)
+                           ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 57, in inner
+    response = response_for_exception(request, exc)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 140, in response_for_exception
+    response = handle_uncaught_exception(
+        request, get_resolver(get_urlconf()), sys.exc_info()
+    )
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 181, in handle_uncaught_exception
+    return debug.technical_500_response(request, *exc_info)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 69, in technical_500_response
+    html = reporter.get_traceback_html()
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 428, in get_traceback_html
+    c = Context(self.get_traceback_data(), use_l10n=False)
+                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 411, in get_traceback_data
+    c["raising_view_name"] = get_caller(self.request)
+                             ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 102, in get_caller
+    resolver_match = resolve(request.path)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\base.py", line 24, in resolve
+    return get_resolver(urlconf).resolve(path)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 686, in resolve
+    for pattern in self.url_patterns:
+                   ^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 738, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 731, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\anime\AppData\Local\Python\pythoncore-3.14-64\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1406, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1342, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 938, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "D:\chesshubacademyonline\backend\config\urls.py", line 5, in <module>
+    from config.views import health_check
+  File "D:\chesshubacademyonline\backend\config\views.py", line 2, in <module>
+    import redis
+ModuleNotFoundError: No module named 'redis'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\deprecation.py", line 134, in __call__
+    response = response or self.get_response(request)
+                           ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 57, in inner
+    response = response_for_exception(request, exc)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 140, in response_for_exception
+    response = handle_uncaught_exception(
+        request, get_resolver(get_urlconf()), sys.exc_info()
+    )
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 181, in handle_uncaught_exception
+    return debug.technical_500_response(request, *exc_info)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 69, in technical_500_response
+    html = reporter.get_traceback_html()
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 428, in get_traceback_html
+    c = Context(self.get_traceback_data(), use_l10n=False)
+                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 411, in get_traceback_data
+    c["raising_view_name"] = get_caller(self.request)
+                             ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 102, in get_caller
+    resolver_match = resolve(request.path)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\base.py", line 24, in resolve
+    return get_resolver(urlconf).resolve(path)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 686, in resolve
+    for pattern in self.url_patterns:
+                   ^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 738, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 731, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\anime\AppData\Local\Python\pythoncore-3.14-64\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1406, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1342, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 938, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "D:\chesshubacademyonline\backend\config\urls.py", line 5, in <module>
+    from config.views import health_check
+  File "D:\chesshubacademyonline\backend\config\views.py", line 2, in <module>
+    import redis
+ModuleNotFoundError: No module named 'redis'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\chesshubacademyonline\backend\apps\academy\verify_system.py", line 326, in run_verification
+    c_login = login_client(coach_user.email)
+  File "D:\chesshubacademyonline\backend\apps\academy\verify_system.py", line 25, in login_client
+    res = client.post('/api/v1/auth/login/', {'email': email, 'password': password}, content_type='application/json')
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\test\client.py", line 1070, in post
+    response = super().post(
+        path,
+    ...<4 lines>...
+        **extra,
+    )
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\test\client.py", line 490, in post
+    return self.generic(
+           ~~~~~~~~~~~~^
+        "POST",
+        ^^^^^^^
+    ...<5 lines>...
+        **extra,
+        ^^^^^^^^
+    )
+    ^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\test\client.py", line 617, in generic
+    return self.request(**r)
+           ~~~~~~~~~~~~^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\test\client.py", line 1008, in request
+    response = self.handler(environ)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\test\client.py", line 186, in __call__
+    response = self.get_response(request)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\base.py", line 140, in get_response
+    response = self._middleware_chain(request)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 57, in inner
+    response = response_for_exception(request, exc)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 140, in response_for_exception
+    response = handle_uncaught_exception(
+        request, get_resolver(get_urlconf()), sys.exc_info()
+    )
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 181, in handle_uncaught_exception
+    return debug.technical_500_response(request, *exc_info)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 69, in technical_500_response
+    html = reporter.get_traceback_html()
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 428, in get_traceback_html
+    c = Context(self.get_traceback_data(), use_l10n=False)
+                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 411, in get_traceback_data
+    c["raising_view_name"] = get_caller(self.request)
+                             ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\views\debug.py", line 102, in get_caller
+    resolver_match = resolve(request.path)
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\base.py", line 24, in resolve
+    return get_resolver(urlconf).resolve(path)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 686, in resolve
+    for pattern in self.url_patterns:
+                   ^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 738, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "D:\chesshubacademyonline\backend\venv\Lib\site-packages\django\urls\resolvers.py", line 731, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\anime\AppData\Local\Python\pythoncore-3.14-64\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1406, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1342, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 938, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "D:\chesshubacademyonline\backend\config\urls.py", line 5, in <module>
+    from config.views import health_check
+  File "D:\chesshubacademyonline\backend\config\views.py", line 2, in <module>
+    import redis
+ModuleNotFoundError: No module named 'redis'
+
 
 --- Verification 7: ChessHub Photo Gallery ---
-Gallery Image database creation: PASS, ID: 5f2f4dab-19fa-4ede-9a3b-6fb9d5eb030b
-Gallery public list status code: 200
-Error in Gallery verification: 'access'
+Gallery Image database creation: PASS, ID: dc013f90-db86-4b6e-b317-182680621d8a
+Error in Gallery verification: No module named 'redis'
 
 --- Verification 8: Blog ---
-Create blog post status code: 201
-Public blogs list status code: 200
+Error in Blog verification: No module named 'redis'
 
 --- Verification 9: Authentication ---
-Token generate: 401
-FAIL: Token generate endpoint failed
+Error in Authentication verification: No module named 'redis'
 
 --- Verification 10: Dashboard Metrics ---
-Error in Dashboard Metrics verification: 'access'
+Error in Dashboard Metrics verification: No module named 'redis'
 
 --- Verification 11: Website Content ---
-Public gallery listing has 3 images.
+Error in Website Content verification: No module named 'redis'
 
 === SUMMARY OF SYSTEM BEHAVIOR VERIFICATION ===
-Feature: DEMO BOOKING -> PASS
+Feature: DEMO BOOKING -> FAIL
 Feature: COACH CREATION -> FAIL
+Feature: STUDENT CREATION -> FAIL
+Feature: SESSION SCHEDULING -> FAIL
 Feature: SESSION COMPLETION -> FAIL
-Feature: HOMEWORK -> PASS
+Feature: HOMEWORK -> FAIL
 Feature: GALLERY -> FAIL
-Feature: BLOG -> PASS
+Feature: BLOG -> FAIL
 Feature: AUTHENTICATION -> FAIL
 Feature: DASHBOARD METRICS -> FAIL
-Feature: WEBSITE CONTENT -> PASS
+Feature: WEBSITE CONTENT -> FAIL

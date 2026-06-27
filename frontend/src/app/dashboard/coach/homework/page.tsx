@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState, useCallback } from 'react';
 import { useAuth } from '@/context/AuthContext';
-import { api } from '@/utils/api';
+import { api, API_URL } from '@/utils/api';
 import { ClipboardList, CheckCircle, XCircle, Eye } from 'lucide-react';
 
 interface Student {
@@ -101,7 +101,7 @@ export default function CoachHomeworkPage() {
                   className="w-full px-3 py-2 bg-background/50 border border-border rounded-xl text-xs text-foreground placeholder:text-muted/60 focus:outline-none resize-none" />
                 <div className="flex gap-2 justify-end">
                   {sub.drive_file_id && (
-                    <a href={`http://localhost:8000/api/v1/homework/submissions/${sub.id}/download/`} target="_blank"
+                    <a href={`${API_URL}/homework/submissions/${sub.id}/download/`} target="_blank"
                       className="px-3 py-1.5 border border-border text-muted rounded-xl text-[10px] font-bold hover:text-white transition flex items-center gap-1">
                       <Eye className="w-3 h-3" /> View PDF
                     </a>

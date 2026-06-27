@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { useAuth } from '@/context/AuthContext';
-import { api } from '@/utils/api';
+import { api, getWsUrl } from '@/utils/api';
 import { useParams, useRouter } from 'next/navigation';
 import ChessBoard, { validateFen } from '@/components/chess/ChessBoard';
 import { useStockfish } from '@/hooks/useStockfish';
@@ -143,124 +143,143 @@ export default function ClassroomPage() {
     loadData();
   }, [loadData]);
 
-  // Establish WebSocket Channel Connection
+  // Establish WebSocket Channel Connection with Auto-Reconnection
   useEffect(() => {
-    const token = localStorage.getItem('access_token');
-    if (!token) return;
+    let ws: WebSocket | null = null;
+    let reconnectionTimeout: NodeJS.Timeout | null = null;
+    let isMounted = true;
+    let reconnectAttempts = 0;
 
-    const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    const wsHost = window.location.hostname === 'localhost' ? 'localhost:8000' : window.location.host;
-    const wsUrl = `${wsProtocol}//${wsHost}/ws/classroom/${id}/?token=${token}`;
-    const ws = new WebSocket(wsUrl);
+    const connect = () => {
+      const token = localStorage.getItem('access_token');
+      if (!token) return;
 
-    ws.onopen = () => {
-      console.log('Classroom Operating System WebSocket Connected');
-    };
+      const wsUrl = getWsUrl(id as string, token);
+      ws = new WebSocket(wsUrl);
 
-    ws.onmessage = (event) => {
-      const data = JSON.parse(event.data);
+      ws.onopen = () => {
+        console.log('Classroom Operating System WebSocket Connected');
+        reconnectAttempts = 0;
+      };
 
-      switch (data.type) {
-        case 'board_sync':
-          if (data.fen) {
-            const safeFen = validateFen(data.fen, "websocket_board_sync");
-            setBoardFen(safeFen);
-            setBoardPgn(data.pgn || '');
-            analyzePosition(safeFen);
-          }
-          setStudentMovesEnabled(data.student_moves_enabled);
-          setBoardMode(data.board_mode || 'teaching');
-          setBoardAnnotations(data.annotations || []);
-          setActiveLessonPlanId(data.active_lesson_plan || null);
-          setActiveLessonStep(data.active_lesson_step || null);
-          setStudentWithMoveRights(data.student_with_move_rights || null);
-          break;
-        case 'board_sync_broadcast':
-          if (data.fen) {
-            const safeFen = validateFen(data.fen, "websocket_board_sync_broadcast");
-            setBoardFen(safeFen);
-            setBoardPgn(data.pgn || '');
-            analyzePosition(safeFen);
-            if (data.clear_annotations) {
-              setBoardAnnotations([]);
+      ws.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+
+        switch (data.type) {
+          case 'board_sync':
+            if (data.fen) {
+              const safeFen = validateFen(data.fen, "websocket_board_sync");
+              setBoardFen(safeFen);
+              setBoardPgn(data.pgn || '');
+              analyzePosition(safeFen);
             }
-          }
-          setActiveLessonPlanId(data.active_lesson_plan || null);
-          setActiveLessonStep(data.active_lesson_step || null);
-          setStudentMovesEnabled(data.student_moves_enabled);
-          setStudentWithMoveRights(data.student_with_move_rights || null);
-          break;
-        case 'board_permissions_broadcast':
-          setStudentMovesEnabled(data.student_moves_enabled);
-          setStudentWithMoveRights(data.student_with_move_rights || null);
-          break;
-        case 'board_mode_broadcast':
-          setBoardMode(data.board_mode);
-          break;
-        case 'board_annotations_broadcast':
-          setBoardAnnotations(data.annotations || []);
-          break;
-        case 'board_clear_annotations_broadcast':
-          setBoardAnnotations([]);
-          break;
-        case 'board_share_eval_broadcast':
-          setShareEval(data.share);
-          break;
-        case 'chat_message_broadcast':
-          setChatMessages(prev => [
-            ...prev,
-            {
-              name: data.name,
-              role: data.role,
-              message: data.message,
-              timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-            }
-          ]);
-          break;
-        case 'presence_join':
-          setActiveParticipants(prev => {
-            if (prev.some(p => p.id === data.user_id)) return prev;
-            return [...prev, { id: data.user_id, name: data.name, role: data.role }];
-          });
-          break;
-        case 'presence_leave':
-          setActiveParticipants(prev => prev.filter(p => p.id !== data.user_id));
-          break;
-        case 'hand_raise_broadcast':
-          setHandRaises(prev => {
-            if (prev.includes(data.name)) return prev;
-            return [...prev, data.name];
-          });
-          break;
-        case 'student_board_update_broadcast':
-          if (user?.role === 'coach' || user?.role === 'manager') {
-            setStudentBoards(prev => ({
-              ...prev,
-              [data.student_id]: {
-                name: data.name,
-                fen: data.fen
+            setStudentMovesEnabled(data.student_moves_enabled);
+            setBoardMode(data.board_mode || 'teaching');
+            setBoardAnnotations(data.annotations || []);
+            setActiveLessonPlanId(data.active_lesson_plan || null);
+            setActiveLessonStep(data.active_lesson_step || null);
+            setStudentWithMoveRights(data.student_with_move_rights || null);
+            break;
+          case 'board_sync_broadcast':
+            if (data.fen) {
+              const safeFen = validateFen(data.fen, "websocket_board_sync_broadcast");
+              setBoardFen(safeFen);
+              setBoardPgn(data.pgn || '');
+              analyzePosition(safeFen);
+              if (data.clear_annotations) {
+                setBoardAnnotations([]);
               }
-            }));
-          }
-          break;
-        case 'coach_guide_move_broadcast':
-          if (user?.role === 'student' && myStudentIdRef.current === data.student_id) {
-            const safeFen = validateFen(data.fen, "coach_guided_move");
-            setBoardFen(safeFen);
-            analyzePosition(safeFen);
-          }
-          break;
-        default:
-          break;
-      }
+            }
+            setActiveLessonPlanId(data.active_lesson_plan || null);
+            setActiveLessonStep(data.active_lesson_step || null);
+            setStudentMovesEnabled(data.student_moves_enabled);
+            setStudentWithMoveRights(data.student_with_move_rights || null);
+            break;
+          case 'board_permissions_broadcast':
+            setStudentMovesEnabled(data.student_moves_enabled);
+            setStudentWithMoveRights(data.student_with_move_rights || null);
+            break;
+          case 'board_mode_broadcast':
+            setBoardMode(data.board_mode);
+            break;
+          case 'board_annotations_broadcast':
+            setBoardAnnotations(data.annotations || []);
+            break;
+          case 'board_clear_annotations_broadcast':
+            setBoardAnnotations([]);
+            break;
+          case 'board_share_eval_broadcast':
+            setShareEval(data.share);
+            break;
+          case 'chat_message_broadcast':
+            setChatMessages(prev => [
+              ...prev,
+              {
+                name: data.name,
+                role: data.role,
+                message: data.message,
+                timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+              }
+            ]);
+            break;
+          case 'presence_join':
+            setActiveParticipants(prev => {
+              if (prev.some(p => p.id === data.user_id)) return prev;
+              return [...prev, { id: data.user_id, name: data.name, role: data.role }];
+            });
+            break;
+          case 'presence_leave':
+            setActiveParticipants(prev => prev.filter(p => p.id !== data.user_id));
+            break;
+          case 'hand_raise_broadcast':
+            setHandRaises(prev => {
+              if (prev.includes(data.name)) return prev;
+              return [...prev, data.name];
+            });
+            break;
+          case 'student_board_update_broadcast':
+            if (user?.role === 'coach' || user?.role === 'manager') {
+              setStudentBoards(prev => ({
+                ...prev,
+                [data.student_id]: {
+                  name: data.name,
+                  fen: data.fen
+                }
+              }));
+            }
+            break;
+          case 'coach_guide_move_broadcast':
+            if (user?.role === 'student' && myStudentIdRef.current === data.student_id) {
+              const safeFen = validateFen(data.fen, "coach_guided_move");
+              setBoardFen(safeFen);
+              analyzePosition(safeFen);
+            }
+            break;
+          default:
+            break;
+        }
+      };
+
+      ws.onclose = () => {
+        if (isMounted) {
+          console.log('Classroom Operating System WebSocket Closed. Reconnecting...');
+          const delay = Math.min(1000 * Math.pow(2, reconnectAttempts), 10000);
+          reconnectAttempts += 1;
+          reconnectionTimeout = setTimeout(connect, delay);
+        }
+      };
+
+      setSocket(ws);
     };
 
-    setSocket(ws);
+    connect();
 
     return () => {
-      ws.close();
+      isMounted = false;
+      if (ws) ws.close();
+      if (reconnectionTimeout) clearTimeout(reconnectionTimeout);
     };
-  }, [id, analyzePosition]);
+  }, [id, analyzePosition, user]);
 
   // Timer logic
   useEffect(() => {

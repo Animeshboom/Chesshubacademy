@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1';
+export const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1';
 
 export const api = axios.create({
   baseURL: API_URL,
@@ -8,6 +8,25 @@ export const api = axios.create({
     'Content-Type': 'application/json',
   },
 });
+
+export const getWsUrl = (classId: string, token: string): string => {
+  if (process.env.NEXT_PUBLIC_WS_URL) {
+    return `${process.env.NEXT_PUBLIC_WS_URL}/ws/classroom/${classId}/?token=${token}`;
+  }
+  
+  // fallback parsing from API_URL
+  try {
+    const url = new URL(API_URL);
+    const wsProtocol = url.protocol === 'https:' ? 'wss:' : 'ws:';
+    // url.host includes host and port (e.g. localhost:8000)
+    return `${wsProtocol}//${url.host}/ws/classroom/${classId}/?token=${token}`;
+  } catch (e) {
+    // raw fallback if URL parsing fails
+    const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const wsHost = window.location.hostname === 'localhost' ? 'localhost:8000' : window.location.host;
+    return `${wsProtocol}//${wsHost}/ws/classroom/${classId}/?token=${token}`;
+  }
+};
 
 // Request Interceptor: Attach Access Token
 api.interceptors.request.use(

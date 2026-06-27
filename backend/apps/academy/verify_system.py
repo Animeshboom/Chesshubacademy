@@ -19,6 +19,13 @@ def run_verification():
     
     # Initialize Test Client
     client = Client()
+
+    def login_client(email):
+        for password in ['ChessHub2026!', 'Password123']:
+            res = client.post('/api/v1/auth/login/', {'email': email, 'password': password}, content_type='application/json')
+            if res.status_code == 200:
+                return res
+        return res
     
     results = {}
 
@@ -81,7 +88,7 @@ def run_verification():
         # Manager login
         manager_email = 'manager@chesshubacademy.online'
         # Get manager token
-        login_res = client.post('/api/v1/auth/login/', {'email': manager_email, 'password': 'Password123'}, content_type='application/json')
+        login_res = login_client(manager_email)
         log(f"Manager login status: {login_res.status_code}")
         
         if login_res.status_code == 200:
@@ -113,7 +120,7 @@ def run_verification():
                 if coach_profile:
                     log(f"Coach profile created: {coach_profile.id}")
                     # Login as coach
-                    coach_login = client.post('/api/v1/auth/login/', {'email': 'coach_test_verify@chesshubacademy.online', 'password': 'Password123'}, content_type='application/json')
+                    coach_login = login_client('coach_test_verify@chesshubacademy.online')
                     log(f"Coach login response: {coach_login.status_code}")
                     if coach_login.status_code == 200:
                         coach_token = coach_login.json()['access']
@@ -148,7 +155,7 @@ def run_verification():
     log("\n--- Verification 3: Student Creation ---")
     try:
         manager_email = 'manager@chesshubacademy.online'
-        login_res = client.post('/api/v1/auth/login/', {'email': manager_email, 'password': 'Password123'}, content_type='application/json')
+        login_res = login_client(manager_email)
         if login_res.status_code == 200:
             token = login_res.json()['access']
             auth_headers = {'HTTP_AUTHORIZATION': f'Bearer {token}'}
@@ -177,7 +184,7 @@ def run_verification():
                 if student_profile:
                     log(f"Student profile created: {student_profile.id}")
                     # Login as student
-                    student_login = client.post('/api/v1/auth/login/', {'email': 'student_test_verify@chesshubacademy.online', 'password': 'Password123'}, content_type='application/json')
+                    student_login = login_client('student_test_verify@chesshubacademy.online')
                     if student_login.status_code == 200:
                         s_token = student_login.json()['access']
                         s_headers = {'HTTP_AUTHORIZATION': f'Bearer {s_token}'}
@@ -202,7 +209,7 @@ def run_verification():
     log("\n--- Verification 4: Session Scheduling ---")
     try:
         manager_email = 'manager@chesshubacademy.online'
-        login_res = client.post('/api/v1/auth/login/', {'email': manager_email, 'password': 'Password123'}, content_type='application/json')
+        login_res = login_client(manager_email)
         if login_res.status_code == 200:
             token = login_res.json()['access']
             auth_headers = {'HTTP_AUTHORIZATION': f'Bearer {token}'}
@@ -263,7 +270,7 @@ def run_verification():
         
         if session and student and coach_user:
             # Login as the assigned coach
-            login_res = client.post('/api/v1/auth/login/', {'email': coach_user.email, 'password': 'Password123'}, content_type='application/json')
+            login_res = login_client(coach_user.email)
             if login_res.status_code == 200:
                 c_token = login_res.json()['access']
                 c_headers = {'HTTP_AUTHORIZATION': f'Bearer {c_token}'}
@@ -316,7 +323,7 @@ def run_verification():
         
         if coach_user and student_user:
             # 1. Coach creates homework template
-            c_login = client.post('/api/v1/auth/login/', {'email': coach_user.email, 'password': 'Password123'}, content_type='application/json')
+            c_login = login_client(coach_user.email)
             c_token = c_login.json()['access']
             c_headers = {'HTTP_AUTHORIZATION': f'Bearer {c_token}'}
             
@@ -346,7 +353,7 @@ def run_verification():
                     assignment_id = assign_res.json()[0]['id']
                     
                     # 3. Student submits homework
-                    s_login = client.post('/api/v1/auth/login/', {'email': student_user.email, 'password': 'Password123'}, content_type='application/json')
+                    s_login = login_client(student_user.email)
                     s_token = s_login.json()['access']
                     s_headers = {'HTTP_AUTHORIZATION': f'Bearer {s_token}'}
                     
@@ -412,7 +419,7 @@ def run_verification():
         log(f"Gallery public list status code: {gallery_res.status_code}")
         
         manager_email = 'manager@chesshubacademy.online'
-        m_login = client.post('/api/v1/auth/login/', {'email': manager_email, 'password': 'Password123'}, content_type='application/json')
+        m_login = login_client(manager_email)
         m_token = m_login.json()['access']
         m_headers = {'HTTP_AUTHORIZATION': f'Bearer {m_token}'}
         
@@ -448,7 +455,7 @@ def run_verification():
         coach_user = User.objects.filter(role='coach').first()
         
         if category and coach_user:
-            c_login = client.post('/api/v1/auth/login/', {'email': coach_user.email, 'password': 'Password123'}, content_type='application/json')
+            c_login = login_client(coach_user.email)
             c_token = c_login.json()['access']
             c_headers = {'HTTP_AUTHORIZATION': f'Bearer {c_token}'}
             
@@ -480,7 +487,7 @@ def run_verification():
     # --- FEATURE 9: Authentication ---
     log("\n--- Verification 9: Authentication ---")
     try:
-        auth_res = client.post('/api/v1/auth/login/', {'email': 'manager@chesshubacademy.online', 'password': 'Password123'}, content_type='application/json')
+        auth_res = login_client('manager@chesshubacademy.online')
         log(f"Token generate: {auth_res.status_code}")
         
         if auth_res.status_code == 200:
@@ -504,7 +511,7 @@ def run_verification():
     log("\n--- Verification 10: Dashboard Metrics ---")
     try:
         manager_email = 'manager@chesshubacademy.online'
-        login_res = client.post('/api/v1/auth/login/', {'email': manager_email, 'password': 'Password123'}, content_type='application/json')
+        login_res = login_client(manager_email)
         token = login_res.json()['access']
         auth_headers = {'HTTP_AUTHORIZATION': f'Bearer {token}'}
         

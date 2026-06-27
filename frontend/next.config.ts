@@ -11,10 +11,12 @@ const config: NextConfig = {
     ignoreDuringBuilds: true,
   },
   async rewrites() {
+    const apiURL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1';
+    const backendBaseURL = apiURL.split('/api/')[0];
     return [
       {
         source: '/media/:path*',
-        destination: 'http://localhost:8000/media/:path*',
+        destination: `${backendBaseURL}/media/:path*`,
       },
     ];
   },

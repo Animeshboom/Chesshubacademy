@@ -182,15 +182,9 @@ class ChessStudyViewSet(viewsets.ModelViewSet):
         if not title:
             return Response({'error': 'Title is required when not importing from a valid Lichess URL.'}, status=status.HTTP_400_BAD_REQUEST)
 
-        # Validate fen_data
-        if not fen_data or fen_data in ["", "start", "null", "undefined"]:
-            fen_data = DEFAULT_FEN
-        else:
-            try:
-                import chess
-                chess.Board(fen_data)
-            except Exception:
-                fen_data = DEFAULT_FEN
+        # Validate fen_data using classroom utility
+        from classroom.utils import validate_fen
+        fen_data = validate_fen(fen_data)
 
         study = ChessStudy.objects.create(
             title=title,
@@ -203,7 +197,7 @@ class ChessStudyViewSet(viewsets.ModelViewSet):
 
 
 class SystemMigrateView(views.APIView):
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAdminUser]
 
     def get(self, request):
         from django.core.management import call_command
@@ -315,17 +309,8 @@ class StudyVaultViewSet(viewsets.ModelViewSet):
             ch_title = title_match.group(1) if title_match else f"Chapter {order + 1}"
             
             fen_match = re.search(r'\[FEN\s+"([^"]+)"\]', game)
-            DEFAULT_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
-            fen = DEFAULT_FEN
-            if fen_match:
-                candidate = fen_match.group(1).strip()
-                if candidate not in ["", "start", "null", "undefined"]:
-                    try:
-                        import chess
-                        chess.Board(candidate)
-                        fen = candidate
-                    except Exception:
-                        pass
+            from classroom.utils import validate_fen
+            fen = validate_fen(fen_match.group(1) if fen_match else None)
             
             chapter = StudyChapter.objects.create(
                 study=vault,

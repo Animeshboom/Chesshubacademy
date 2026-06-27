@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState, useCallback } from 'react';
-import { api } from '@/utils/api';
+import { api, API_URL } from '@/utils/api';
 import {
   Calendar, CheckCircle, Clock, Video, ClipboardList,
   Users, ChevronRight, Award, UserMinus, FileText, AlertTriangle, BookOpen, Star, RefreshCw
@@ -336,7 +336,7 @@ export default function CoachDashboard() {
                   {sub.submission_notes && <p className="text-[9px] text-muted/80 italic font-mono">"{sub.submission_notes}"</p>}
                   <div className="flex gap-2 justify-end pt-1">
                     {sub.drive_file_id && (
-                      <a href={`http://localhost:8000/api/v1/homework/submissions/${sub.id}/download/`} target="_blank" rel="noreferrer"
+                      <a href={`${API_URL}/homework/submissions/${sub.id}/download/`} target="_blank" rel="noreferrer"
                         className="px-2.5 py-1 border border-border text-muted rounded-lg text-[9px] font-bold hover:text-white transition">
                         View PDF
                       </a>

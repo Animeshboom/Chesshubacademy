@@ -199,7 +199,16 @@ class HomeworkSubmissionViewSet(viewsets.ModelViewSet):
 
         drive_id = None
         if file_obj and isinstance(file_obj, UploadedFile):
+            # Enforce 10MB limit
+            if file_obj.size > 10 * 1024 * 1024:
+                return Response({'error': 'File size exceeds maximum allowed size of 10MB.'}, status=status.HTTP_400_BAD_REQUEST)
+            
+            # Whitelist formats
             import os
+            ext = os.path.splitext(file_obj.name)[1].lower()
+            if ext not in ['.pdf', '.png', '.jpg', '.jpeg', '.pgn']:
+                return Response({'error': 'Unsupported file extension. Only PDF, PNG, JPG, and PGN files are allowed.'}, status=status.HTTP_400_BAD_REQUEST)
+
             import tempfile
             from django.conf import settings
 

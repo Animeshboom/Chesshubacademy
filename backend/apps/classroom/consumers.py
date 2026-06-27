@@ -15,12 +15,9 @@ class ClassroomConsumer(AsyncJsonWebsocketConsumer):
         self.room_group_name = f'classroom_{self.session_id}'
 
         # Get token from query string
-        query_params = self.scope.get('query_string', b'').decode()
-        token = None
-        for param in query_params.split('&'):
-            if param.startswith('token='):
-                token = param.split('=')[1]
-                break
+        from urllib.parse import parse_qs
+        query_params = parse_qs(self.scope.get('query_string', b'').decode())
+        token = query_params.get('token', [None])[0]
 
         if not token:
             await self.close(code=4001)
@@ -492,20 +489,8 @@ class ClassroomConsumer(AsyncJsonWebsocketConsumer):
     @database_sync_to_async
     def get_or_create_board_state(self, session):
         obj, created = BoardState.objects.get_or_create(session=session)
-        DEFAULT_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
-        import chess
-        fen = obj.current_fen
-        if not fen or not isinstance(fen, str):
-            fen = DEFAULT_FEN
-        cleaned = fen.strip()
-        if cleaned in ["", "start", "null", "undefined"]:
-            fen = DEFAULT_FEN
-        else:
-            try:
-                chess.Board(cleaned)
-                fen = cleaned
-            except Exception:
-                fen = DEFAULT_FEN
+        from classroom.utils import validate_fen
+        fen = validate_fen(obj.current_fen)
         if obj.current_fen != fen:
             obj.current_fen = fen
             obj.save()
@@ -513,20 +498,8 @@ class ClassroomConsumer(AsyncJsonWebsocketConsumer):
 
     @database_sync_to_async
     def save_board_fen(self, board_state, fen):
-        DEFAULT_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
-        import chess
-        if not fen or not isinstance(fen, str):
-            fen = DEFAULT_FEN
-        cleaned = fen.strip()
-        if cleaned in ["", "start", "null", "undefined"]:
-            fen = DEFAULT_FEN
-        else:
-            try:
-                chess.Board(cleaned)
-                fen = cleaned
-            except Exception:
-                fen = DEFAULT_FEN
-        board_state.current_fen = fen
+        from classroom.utils import validate_fen
+        board_state.current_fen = validate_fen(fen)
         board_state.save()
 
     @database_sync_to_async
@@ -645,17 +618,14 @@ class ClassroomConsumer(AsyncJsonWebsocketConsumer):
     @database_sync_to_async
     def load_lesson_plan(self, board_state, lesson_plan_id):
         from classroom.models import LessonPlan, LessonStep
+        from classroom.utils import validate_fen
         try:
             lesson_plan = LessonPlan.objects.get(id=lesson_plan_id)
             first_step = lesson_plan.steps.order_by('order').first()
             board_state.active_lesson_plan = lesson_plan
             board_state.active_lesson_step = first_step
-            if first_step:
-                board_state.current_fen = first_step.fen or "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
-                board_state.pgn = first_step.pgn or ""
-            else:
-                board_state.current_fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
-                board_state.pgn = ""
+            board_state.current_fen = validate_fen(first_step.fen if first_step else None)
+            board_state.pgn = (first_step.pgn if first_step else "") or ""
             board_state.annotations = []
             board_state.save()
             return lesson_plan, first_step
@@ -665,6 +635,7 @@ class ClassroomConsumer(AsyncJsonWebsocketConsumer):
     @database_sync_to_async
     def load_next_or_prev_step(self, board_state, direction):
         from classroom.models import LessonStep
+        from classroom.utils import validate_fen
         if not board_state.active_lesson_plan or not board_state.active_lesson_step:
             return None
         current_step = board_state.active_lesson_step
@@ -678,7 +649,7 @@ class ClassroomConsumer(AsyncJsonWebsocketConsumer):
             
         if target_step:
             board_state.active_lesson_step = target_step
-            board_state.current_fen = target_step.fen or "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+            board_state.current_fen = validate_fen(target_step.fen)
             board_state.pgn = target_step.pgn or ""
             board_state.annotations = []
             board_state.save()
