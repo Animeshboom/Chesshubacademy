@@ -1,0 +1,22 @@
+# Ignore local SQLite database
+db.sqlite3
+
+# Ignore local media uploads
+media/
+
+# Ignore local virtual environment
+venv/
+.env
+
+# Ignore python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore local system verification/audit logs
+verification_results.txt
+user_check.txt
+reset_pw.py
+fly.toml
+.dockerignore
