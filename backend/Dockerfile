@@ -1,10 +1,9 @@
 # Use an official Python runtime as a parent image
-FROM python:3.11-slim as base
+FROM python:3.11-slim
 
 # Set environment variables
-ENV PYTHONUNBUFFERED=1 \
-    PYTHONDONTWRITEBYTECODE=1 \
-    PORT=7860
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
 
 # Set work directory
 WORKDIR /app
@@ -15,20 +14,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Create non-root user for Hugging Face security compatibility
-RUN useradd -m -u 1000 user
-USER user
-ENV PATH="/home/user/.local/bin:$PATH"
-
 # Install dependencies
-COPY --chown=user requirements.txt /app/
-RUN pip install --no-cache-dir --user -r requirements.txt
+COPY requirements.txt /app/
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy project files
-COPY --chown=user . /app/
+COPY . /app/
 
-# Expose port
-EXPOSE 7860
+# Run collectstatic during image build (safely ignore failures if env vars are missing at build time)
+RUN python manage.py collectstatic --no-input || true
 
-# Start application server dynamically on the assigned PORT
-CMD ["sh", "-c", "daphne -b 0.0.0.0 -p $PORT config.asgi:application"]
+# Expose default port
+EXPOSE 8000
+
+# Startup command: run database migrations, collect static files, and start Daphne ASGI server
+CMD ["sh", "-c", "python manage.py migrate --no-input && python manage.py collectstatic --no-input && daphne -b 0.0.0.0 -p ${PORT:-8000} config.asgi:application"]
